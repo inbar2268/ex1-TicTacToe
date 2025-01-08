@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
     private var cellsPositions = intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
-    private var playerTurn = 1  //o-> 1, x-> 2
+    private var playerTurn = 1  //x-> 1, o-> 2
     private var totalTurns = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,17 +53,17 @@ class MainActivity : AppCompatActivity() {
         cellsPositions[cellNumber] = playerTurn
 
         if (playerTurn == 1) {
-            imageButton.setImageResource(R.drawable.oimage)
-        } else {
             imageButton.setImageResource(R.drawable.ximage)
+        } else {
+            imageButton.setImageResource(R.drawable.oimage)
         }
         cellsPositions[cellNumber] = playerTurn
         val winner = checkWin()
         if (winner == 1) {
-            binding?.playerSymbol?.text = "Player O is the winner!"
+            binding?.playerSymbol?.text = "Player X is the winner!"
             gameOver()
         } else if (winner == 2){
-            binding?.playerSymbol?.text = "Player X is the winner!"
+            binding?.playerSymbol?.text = "Player O is the winner!"
             gameOver()
         } else if (winner == 0 && totalTurns == 9){
             gameOver()
@@ -77,10 +77,10 @@ class MainActivity : AppCompatActivity() {
     private fun switchTurn() {
         if (playerTurn == 1) {
             playerTurn = 2
-            binding?.playerSymbol?.text = "Player: X"
+            binding?.playerSymbol?.text = "Player: O"
         } else {
             playerTurn = 1
-            binding?.playerSymbol?.text = "Player: O"
+            binding?.playerSymbol?.text = "Player: X"
         }
     }
 
@@ -109,7 +109,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isCellEmpty(cellNumber: Int): Boolean{
-        Log.d("TAG", "cell number: ${cellNumber}" )
         return if(cellsPositions[cellNumber] == 0){
             true
         } else{
@@ -122,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         playerTurn = 1
         totalTurns = 1
         binding?.restartGameButton?.visibility = View.GONE
-        binding?.playerSymbol?.text = "Player: O"
+        binding?.playerSymbol?.text = "Player: X"
         val cellsList = getCellsList()
         for(cell in cellsList){
             cell?.isEnabled = true

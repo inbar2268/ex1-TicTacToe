@@ -189,7 +189,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Player: O"
+        android:text="Player: X"
         android:textColor="#FFFFFF"
         android:textSize="28dp"
         app:layout_constraintEnd_toEndOf="parent"
